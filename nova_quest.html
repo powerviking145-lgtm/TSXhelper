@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Алекс — гид по приложению</title>
+<style>
+:root {
+  --bg0: #0c1409;
+  --bg1: #111a0d;
+  --bg2: #172112;
+  --bg3: #1e2d18;
+  --green: #2db561;
+  --green2: #1e8c45;
+  --lime: #c8f031;
+  --lime2: #a8cd1a;
+  --orange: #f4872a;
+  --gold: #f5c842;
+  --text: #eef6e2;
+  --muted: #7da065;
+  --border: rgba(80,160,60,.28);
+  --shadow: 0 4px 32px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+body{
+  background:radial-gradient(ellipse at 30% 70%,#0d1f0a,#060a04);
+  display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;
+}
+
+/* ─── PHONE ─────────────────────────────────── */
+.phone{
+  width:375px;height:812px;max-height:96vh;
+  background:#000;border-radius:44px;padding:10px;
+  box-shadow:0 0 0 1px #2a2a2a, var(--shadow), 0 0 80px rgba(0,180,60,.08);
+  position:relative;flex-shrink:0;
+}
+.phone::before{
+  content:"";position:absolute;top:20px;left:50%;transform:translateX(-50%);
+  width:120px;height:30px;background:#000;border-radius:20px;z-index:99;
+}
+.screen{
+  width:100%;height:100%;border-radius:36px;overflow:hidden;
+  background:var(--bg0);position:relative;
+}
+
+/* ─── SCENE BG ──────────────────────────────── */
+.scene{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 100% 60% at 50% 0%,#1a2e12 0%,transparent 65%),
+    radial-gradient(ellipse 70% 40% at 85% 25%,#0f2008 0%,transparent 60%),
+    linear-gradient(180deg,#0f1a0b 0%,#0c1409 50%,#080e06 100%);
+}
+/* ceiling lamps */
+.lamp{position:absolute;top:0;width:3px;height:55px;transform-origin:top center;}
+.lamp::before{
+  content:"";position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:22px;height:10px;background:#2a3520;border-radius:0 0 12px 12px;
+}
+.lamp::after{
+  content:"";position:absolute;bottom:6px;left:50%;transform:translateX(-50%);
+  width:10px;height:10px;border-radius:50%;
+  background:radial-gradient(circle,#f5e090,#e8b820);
+  box-shadow:0 0 18px 8px rgba(240,200,60,.22);
+}
+.lamp.l1{left:18%;background:transparent;}
+.lamp.l2{left:50%;background:transparent;}
+.lamp.l3{left:82%;background:transparent;}
+
+/* shelf rows */
+.shelf{position:absolute;left:0;right:0;height:8px;background:linear-gradient(180deg,#2a3520,#1a2212);border-radius:2px;}
+.shelf::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.04) 0,rgba(255,255,255,.01) 100%);}
+.s1{top:22%}.s2{top:42%}.s3{top:62%}
+
+/* produce on shelves */
+.prod{position:absolute;display:flex;gap:2px;align-items:flex-end;}
+.pi{border-radius:3px 3px 1px 1px}
+.prod.pa{top:calc(22% - 30px);left:5%}
+.prod.pb{top:calc(22% - 26px);left:55%}
+.prod.pc{top:calc(42% - 28px);right:8%}
+.prod.pd{top:calc(42% - 22px);left:12%}
+
+/* vignette */
+.vig{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(0deg,rgba(6,10,4,.9) 0%,transparent 38%),
+    radial-gradient(ellipse at 50% 110%,rgba(4,8,3,.7),transparent 55%);
+}
+
+/* ─── TOP BAR ───────────────────────────────── */
+.topbar{position:absolute;top:0;left:0;right:0;z-index:20;padding:48px 14px 0}
+.pill{
+  display:inline-flex;align-items:center;gap:9px;
+  background:rgba(10,20,8,.82);border:1px solid rgba(100,200,70,.22);
+  border-radius:30px;padding:8px 14px;
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+}
+.pill .star{font-size:14px}
+.pill .t1{font-size:11px;font-weight:700;color:var(--lime);letter-spacing:.5px}
+.pill .t2{font-size:10px;color:var(--muted);margin-top:1px}
+
+/* ─── CHARACTER SVG ─────────────────────────── */
+.char-wrap{
+  position:absolute;left:50%;bottom:212px;
+  transform:translateX(-50%);
+  width:220px;height:340px;z-index:10;
+}
+.char-svg{
+  width:100%;height:100%;overflow:visible;
+  filter:drop-shadow(0 20px 40px rgba(0,0,0,.6)) drop-shadow(0 4px 12px rgba(0,200,80,.08));
+}
+
+/* breathing */
+#body-group{animation:breathe 3.8s ease-in-out infinite;transform-origin:50% 95%}
+@keyframes breathe{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.022)}}
+
+/* head float */
+#head-group{animation:headfloat 5s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes headfloat{
+  0%,100%{transform:translateY(0) rotate(0)}
+  30%{transform:translateY(-3px) rotate(1deg)}
+  70%{transform:translateY(-1.5px) rotate(-.7deg)}
+}
+
+/* blink */
+#eye-l,#eye-r{animation:blink 4.5s infinite;transform-origin:50% 50%}
+@keyframes blink{0%,88%,100%{transform:scaleY(1)}92%{transform:scaleY(.05)}}
+
+/* arm rest */
+#arm-l{transform:rotate(12deg);transform-origin:55px 135px;transition:transform .55s cubic-bezier(.3,.9,.3,1)}
+#arm-r{transform:rotate(-12deg);transform-origin:165px 135px;transition:transform .55s cubic-bezier(.3,.9,.3,1)}
+
+/* mouth morph */
+#mouth-smile{transition:d .4s;transition:opacity .3s}
+#mouth-open{opacity:0;transition:opacity .3s}
+#mouth-hmm{opacity:0;transition:opacity .3s}
+
+/* eyebrow transition */
+#brow-l,#brow-r{transition:transform .4s cubic-bezier(.3,.9,.3,1)}
+#cheek-l,#cheek-r{opacity:0;transition:opacity .4s}
+
+/* POSE CLASSES */
+
+/* think */
+.pose-think #arm-l{transform:rotate(-100deg) translateX(-8px);transform-origin:55px 135px}
+.pose-think #brow-l{transform:rotate(-15deg) translateY(-2px)}
+.pose-think #brow-r{transform:rotate(10deg) translateY(-2px)}
+.pose-think #mouth-smile{opacity:0}
+.pose-think #mouth-hmm{opacity:1}
+
+/* point */
+.pose-point #arm-r{transform:rotate(-155deg) translateY(-4px);transform-origin:165px 135px}
+.pose-point #brow-l{transform:rotate(-8deg) translateY(-2px)}
+
+/* happy */
+.pose-happy #arm-l{transform:rotate(-55deg);transform-origin:55px 135px}
+.pose-happy #arm-r{transform:rotate(55deg);transform-origin:165px 135px}
+.pose-happy #brow-l{transform:rotate(-12deg) translateY(-3px)}
+.pose-happy #brow-r{transform:rotate(12deg) translateY(-3px)}
+.pose-happy #mouth-smile{opacity:0}
+.pose-happy #mouth-open{opacity:1}
+.pose-happy #cheek-l,.pose-happy #cheek-r{opacity:1}
+
+/* wink */
+.pose-wink #arm-r{transform:rotate(-148deg);transform-origin:165px 135px}
+.pose-wink #brow-l{transform:rotate(-18deg) translateY(-4px)}
+.pose-wink #eye-l{transform:scaleY(.05);animation:none}
+.pose-wink #cheek-l{opacity:.7}
+.pose-wink #mouth-smile{opacity:0}
+.pose-wink #mouth-hmm{opacity:1}
+
+/* welcome */
+.pose-welcome #arm-r{transform:rotate(-170deg);transform-origin:165px 135px}
+.pose-welcome #brow-l{transform:translateY(-2px)}
+.pose-welcome #brow-r{transform:translateY(-2px)}
+
+/* ─── BUBBLE ─────────────────────────────────── */
+.bubble{
+  position:absolute;left:14px;right:14px;bottom:196px;z-index:15;
+  background:linear-gradient(145deg,rgba(18,35,12,.96),rgba(12,22,8,.98));
+  border:1px solid rgba(80,160,50,.4);
+  border-radius:22px 22px 22px 4px;
+  padding:14px 16px;
+  box-shadow:0 8px 32px rgba(0,0,0,.5),inset 0 1px 0 rgba(150,255,100,.06);
+  opacity:0;transform:translateY(10px) scale(.97);
+  transition:opacity .38s ease,transform .38s ease;
+}
+.bubble.show{opacity:1;transform:none}
+.bubble .who{
+  font-size:10px;font-weight:700;color:var(--lime);letter-spacing:.8px;
+  display:flex;align-items:center;gap:7px;margin-bottom:7px;
+}
+.bubble .dot{width:7px;height:7px;border-radius:50%;background:var(--lime);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.bubble .txt{font-size:15px;font-weight:500;color:var(--text);line-height:1.5;min-height:44px}
+.cursor{display:inline-block;width:2px;height:1em;background:var(--lime);vertical-align:-2px;margin-left:1px;animation:cur .7s step-start infinite}
+@keyframes cur{50%{opacity:0}}
+
+/* ─── CHOICES ────────────────────────────────── */
+.choices{
+  position:absolute;left:12px;right:12px;bottom:28px;z-index:15;
+  display:flex;flex-direction:column;gap:8px;
+}
+.ch{
+  display:flex;align-items:center;gap:12px;
+  background:linear-gradient(145deg,rgba(16,32,10,.95),rgba(10,22,6,.98));
+  border:1.5px solid rgba(70,150,45,.4);
+  border-radius:16px;padding:12px 14px;cursor:pointer;text-decoration:none;
+  box-shadow:0 4px 20px rgba(0,0,0,.4);
+  opacity:0;transform:translateY(14px);
+  transition:opacity .35s ease,transform .35s ease,border-color .18s,background .18s,box-shadow .18s;
+}
+.ch.show{opacity:1;transform:none}
+.ch:nth-child(1).show{transition-delay:.1s}
+.ch:nth-child(2).show{transition-delay:.2s}
+.ch:nth-child(3).show{transition-delay:.3s}
+.ch:hover{background:linear-gradient(145deg,rgba(25,50,15,.98),rgba(18,35,10,.98));border-color:var(--lime);box-shadow:0 6px 28px rgba(100,220,50,.15)}
+.ch:active{transform:scale(.97)!important}
+.ch .ic{font-size:20px;flex-shrink:0;width:28px;text-align:center}
+.ch .lbl{flex:1}
+.ch .lbl .main{font-size:14px;font-weight:700;color:var(--text);line-height:1.25}
+.ch .lbl .sub{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.3}
+.ch .arr{font-size:14px;color:var(--muted);flex-shrink:0}
+
+/* ─── REWARD ─────────────────────────────────── */
+.reward{
+  position:absolute;inset:0;z-index:80;
+  background:radial-gradient(ellipse at 50% 30%,#172e0e,#080f05);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:32px 24px;
+  opacity:0;pointer-events:none;
+  transition:opacity .4s ease;
+}
+.reward.show{opacity:1;pointer-events:auto}
+.reward .big-em{font-size:86px;animation:pop .6s cubic-bezier(.3,1.4,.4,1)}
+@keyframes pop{0%{transform:scale(.2);opacity:0}60%{transform:scale(1.12)}100%{transform:scale(1);opacity:1}}
+.reward .badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(30,60,15,.8);border:1px solid rgba(100,200,60,.35);
+  border-radius:30px;padding:5px 14px;margin-top:14px;
+  font-size:11px;font-weight:700;color:var(--lime);letter-spacing:.5px;
+}
+.reward h2{font-size:22px;font-weight:800;color:var(--text);margin-top:12px;line-height:1.25}
+.reward p{font-size:13.5px;color:var(--muted);margin-top:8px;line-height:1.55;max-width:290px}
+.reward .pts{
+  font-size:36px;font-weight:800;color:var(--gold);
+  margin-top:14px;display:flex;align-items:center;gap:8px;
+}
+.reward .links{width:100%;display:flex;flex-direction:column;gap:8px;margin-top:20px}
+.reward a.btn-primary{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  background:linear-gradient(135deg,var(--green),var(--green2));
+  color:#fff;border-radius:16px;padding:14px 20px;
+  font-size:14px;font-weight:700;text-decoration:none;
+  box-shadow:0 6px 22px rgba(30,140,60,.4);transition:transform .12s;
+}
+.reward a.btn-primary:active{transform:scale(.97)}
+.reward a.btn-sec{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  background:rgba(20,40,12,.8);border:1.5px solid rgba(70,140,40,.35);
+  color:var(--muted);border-radius:14px;padding:11px 20px;
+  font-size:13px;font-weight:600;text-decoration:none;transition:border-color .15s,color .15s;
+}
+.reward a.btn-sec:hover{border-color:var(--lime);color:var(--text)}
+.reward .restart{
+  margin-top:10px;font-size:12px;color:rgba(100,140,80,.6);cursor:pointer;padding:8px;
+  transition:color .18s;
+}
+.reward .restart:hover{color:var(--muted)}
+.confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.confetti i{position:absolute;top:-20px;border-radius:3px;animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(900px) rotate(540deg);opacity:0}}
+</style>
+</head>
+<body>
+<div class="phone">
+ <div class="screen">
+
+  <!-- SCENE -->
+  <div class="scene">
+   <div class="lamp l1"></div>
+   <div class="lamp l2"></div>
+   <div class="lamp l3"></div>
+   <div class="shelf s1"></div>
+   <div class="shelf s2"></div>
+   <div class="shelf s3"></div>
+   <!-- produce -->
+   <div class="prod pa">
+    <div class="pi" style="width:14px;height:28px;background:linear-gradient(180deg,#6db85e,#3a7a30)"></div>
+    <div class="pi" style="width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#e86060,#b02020)"></div>
+    <div class="pi" style="width:12px;height:24px;background:linear-gradient(180deg,#8dc84a,#5a9020)"></div>
+    <div class="pi" style="width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#f09050,#c05010)"></div>
+   </div>
+   <div class="prod pb">
+    <div class="pi" style="width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#f5d060,#c8900a)"></div>
+    <div class="pi" style="width:16px;height:26px;background:linear-gradient(180deg,#9ecf55,#5a9020)"></div>
+    <div class="pi" style="width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#e07050,#a03010)"></div>
+   </div>
+   <div class="prod pc">
+    <div class="pi" style="width:12px;height:22px;background:linear-gradient(180deg,#7ec860,#3a6a28)"></div>
+    <div class="pi" style="width:12px;height:28px;background:linear-gradient(180deg,#7ec860,#3a6a28)"></div>
+    <div class="pi" style="width:12px;height:18px;background:linear-gradient(180deg,#7ec860,#3a6a28)"></div>
+    <div class="pi" style="width:12px;height:24px;background:linear-gradient(180deg,#7ec860,#3a6a28)"></div>
+   </div>
+   <div class="prod pd">
+    <div class="pi" style="width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#e06050,#a02010)"></div>
+    <div class="pi" style="width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#e06050,#a02010)"></div>
+   </div>
+  </div>
+
+  <!-- vignette -->
+  <div class="vig"></div>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+   <div class="pill">
+    <span class="star">⭐</span>
+    <div>
+     <div class="t1">ГАЙД ПО ПРИЛОЖЕНИЮ</div>
+     <div class="t2">Алекс покажет, где твоя выгода</div>
+    </div>
+   </div>
+  </div>
+
+  <!-- CHARACTER -->
+  <div class="char-wrap" id="char">
+   <svg class="char-svg" viewBox="0 0 220 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+     <!-- skin gradient -->
+     <radialGradient id="skinG" cx="42%" cy="35%" r="58%">
+      <stop offset="0%" stop-color="#f5c89a"/>
+      <stop offset="100%" stop-color="#d9965c"/>
+     </radialGradient>
+     <radialGradient id="skinGd" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f0b87a"/>
+      <stop offset="100%" stop-color="#cc8844"/>
+     </radialGradient>
+     <!-- shirt gradient -->
+     <linearGradient id="shirtG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2d5a22"/>
+      <stop offset="100%" stop-color="#1a3a12"/>
+     </linearGradient>
+     <!-- hair gradient -->
+     <radialGradient id="hairG" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#5a3e28"/>
+      <stop offset="100%" stop-color="#2e1e0e"/>
+     </radialGradient>
+     <!-- eye gradient -->
+     <radialGradient id="eyeG" cx="35%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#3a5080"/>
+      <stop offset="100%" stop-color="#1a2040"/>
+     </radialGradient>
+     <!-- shadow under char -->
+     <radialGradient id="shadowG" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(0,0,0,.4)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+     </radialGradient>
+     <!-- shirt shine -->
+     <linearGradient id="shirtShine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,.1)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+     </linearGradient>
+    </defs>
+
+    <!-- ground shadow -->
+    <ellipse cx="110" cy="332" rx="68" ry="8" fill="url(#shadowG)"/>
+
+    <!-- BODY GROUP (breathe) -->
+    <g id="body-group">
+
+     <!-- ARM LEFT -->
+     <g id="arm-l">
+      <rect x="35" y="132" width="26" height="108" rx="13" fill="url(#shirtG)"/>
+      <rect x="35" y="132" width="26" height="108" rx="13" fill="url(#shirtShine)"/>
+      <!-- hand left -->
+      <ellipse cx="48" cy="248" rx="14" ry="13" fill="url(#skinG)"/>
+      <ellipse cx="42" cy="244" rx="5" ry="4" fill="url(#skinGd)" opacity=".6"/>
+     </g>
+
+     <!-- ARM RIGHT -->
+     <g id="arm-r">
+      <rect x="159" y="132" width="26" height="108" rx="13" fill="url(#shirtG)"/>
+      <rect x="159" y="132" width="26" height="108" rx="13" fill="url(#shirtShine)"/>
+      <!-- hand right -->
+      <ellipse cx="172" cy="248" rx="14" ry="13" fill="url(#skinG)"/>
+      <ellipse cx="178" cy="244" rx="5" ry="4" fill="url(#skinGd)" opacity=".6"/>
+     </g>
+
+     <!-- TORSO -->
+     <rect x="62" y="126" width="96" height="180" rx="44" fill="url(#shirtG)"/>
+     <rect x="62" y="126" width="96" height="180" rx="44" fill="url(#shirtShine)"/>
+
+     <!-- collar -->
+     <path d="M95 132 L110 158 L125 132" fill="#203818" opacity=".8"/>
+     <!-- white undershirt -->
+     <path d="M101 126 C101 126 110 148 119 126" fill="#ddeedd" opacity=".9"/>
+
+     <!-- pocket badge (lime) -->
+     <rect x="87" y="168" width="28" height="8" rx="3" fill="#a8cd1a" opacity=".7"/>
+     <!-- pocket badge detail -->
+     <rect x="90" y="170" width="10" height="4" rx="2" fill="#c8f031" opacity=".5"/>
+
+     <!-- shirt trim at collar -->
+     <path d="M80 128 C80 128 95 140 110 140 C125 140 140 128 140 128" stroke="#3a7028" stroke-width="2" fill="none" opacity=".5"/>
+
+    </g><!-- end body-group -->
+
+    <!-- HEAD GROUP (float) -->
+    <g id="head-group">
+
+     <!-- neck -->
+     <rect x="100" y="108" width="20" height="26" rx="8" fill="url(#skinG)"/>
+
+     <!-- head base -->
+     <ellipse cx="110" cy="80" rx="52" ry="54" fill="url(#skinG)"/>
+     <!-- head side shadow -->
+     <ellipse cx="110" cy="80" rx="52" ry="54" fill="radial-gradient(ellipse at 75% 60%,rgba(0,0,0,.12),transparent)" opacity=".6"/>
+
+     <!-- HAIR -->
+     <ellipse cx="110" cy="48" rx="52" ry="36" fill="url(#hairG)"/>
+     <!-- hair front -->
+     <path d="M60 60 Q65 32 110 28 Q155 32 160 60 Q148 52 130 50 Q110 46 90 50 Q72 52 60 60Z" fill="url(#hairG)"/>
+     <!-- hair highlight -->
+     <path d="M82 34 Q100 28 118 32" stroke="rgba(120,80,40,.4)" stroke-width="3" fill="none" stroke-linecap="round"/>
+     <!-- sideburns -->
+     <rect x="58" y="68" width="10" height="22" rx="5" fill="url(#hairG)"/>
+     <rect x="152" y="68" width="10" height="22" rx="5" fill="url(#hairG)"/>
+
+     <!-- EARS -->
+     <ellipse cx="60" cy="82" rx="9" ry="11" fill="url(#skinG)"/>
+     <ellipse cx="160" cy="82" rx="9" ry="11" fill="url(#skinG)"/>
+     <!-- ear detail -->
+     <ellipse cx="60" cy="82" rx="5" ry="7" fill="url(#skinGd)" opacity=".5"/>
+     <ellipse cx="160" cy="82" rx="5" ry="7" fill="url(#skinGd)" opacity=".5"/>
+
+     <!-- EYEBROWS -->
+     <g id="brow-l" style="transform-origin:82px 60px">
+      <path d="M70 61 Q82 55 94 59" stroke="#4a2e18" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+     </g>
+     <g id="brow-r" style="transform-origin:138px 60px">
+      <path d="M126 59 Q138 55 150 61" stroke="#4a2e18" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+     </g>
+
+     <!-- GLASSES FRAMES -->
+     <!-- left frame -->
+     <rect x="70" y="66" width="36" height="26" rx="8" stroke="#2a1e14" stroke-width="2.5" fill="rgba(180,220,255,.06)"/>
+     <!-- right frame -->
+     <rect x="114" y="66" width="36" height="26" rx="8" stroke="#2a1e14" stroke-width="2.5" fill="rgba(180,220,255,.06)"/>
+     <!-- bridge -->
+     <path d="M106 79 L114 79" stroke="#2a1e14" stroke-width="2.5" stroke-linecap="round"/>
+     <!-- temples -->
+     <path d="M70 79 L62 76" stroke="#2a1e14" stroke-width="2" stroke-linecap="round"/>
+     <path d="M150 79 L158 76" stroke="#2a1e14" stroke-width="2" stroke-linecap="round"/>
+     <!-- glasses shine -->
+     <path d="M73 69 Q80 66 85 68" stroke="rgba(255,255,255,.25)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+     <path d="M117 69 Q124 66 129 68" stroke="rgba(255,255,255,.25)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+     <!-- EYES -->
+     <g id="eye-l" style="transform-origin:88px 79px">
+      <ellipse cx="88" cy="79" rx="10" ry="9" fill="url(#eyeG)"/>
+      <!-- pupil -->
+      <ellipse cx="88" cy="79" rx="5.5" ry="5.5" fill="#12162a"/>
+      <!-- iris ring -->
+      <ellipse cx="88" cy="79" rx="8" ry="7.5" stroke="rgba(80,120,200,.3)" stroke-width="1" fill="none"/>
+      <!-- highlight -->
+      <ellipse cx="84" cy="75" rx="3" ry="2.5" fill="rgba(255,255,255,.75)"/>
+      <ellipse cx="91" cy="81" rx="1.5" ry="1.2" fill="rgba(255,255,255,.3)"/>
+     </g>
+     <g id="eye-r" style="transform-origin:132px 79px">
+      <ellipse cx="132" cy="79" rx="10" ry="9" fill="url(#eyeG)"/>
+      <ellipse cx="132" cy="79" rx="5.5" ry="5.5" fill="#12162a"/>
+      <ellipse cx="132" cy="79" rx="8" ry="7.5" stroke="rgba(80,120,200,.3)" stroke-width="1" fill="none"/>
+      <ellipse cx="128" cy="75" rx="3" ry="2.5" fill="rgba(255,255,255,.75)"/>
+      <ellipse cx="135" cy="81" rx="1.5" ry="1.2" fill="rgba(255,255,255,.3)"/>
+     </g>
+
+     <!-- NOSE -->
+     <path d="M106 90 Q110 100 114 90" stroke="rgba(170,100,50,.5)" stroke-width="2" fill="none" stroke-linecap="round"/>
+     <ellipse cx="106" cy="96" rx="4" ry="3" fill="rgba(180,100,50,.2)"/>
+     <ellipse cx="114" cy="96" rx="4" ry="3" fill="rgba(180,100,50,.2)"/>
+
+     <!-- CHEEKS -->
+     <ellipse id="cheek-l" cx="76" cy="94" rx="12" ry="8" fill="rgba(220,100,80,.25)"/>
+     <ellipse id="cheek-r" cx="144" cy="94" rx="12" ry="8" fill="rgba(220,100,80,.25)"/>
+
+     <!-- MOUTHS (swap via opacity) -->
+     <!-- smile (default) -->
+     <g id="mouth-smile">
+      <path d="M96 105 Q110 116 124 105" stroke="#8a4030" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <!-- teeth hint -->
+      <path d="M100 107 Q110 113 120 107" fill="rgba(255,250,245,.7)"/>
+     </g>
+     <!-- open happy -->
+     <g id="mouth-open" style="opacity:0">
+      <path d="M94 104 Q110 120 126 104" fill="#7a3020"/>
+      <path d="M94 104 Q110 120 126 104" stroke="#5a2015" stroke-width="1" fill="none"/>
+      <!-- teeth -->
+      <rect x="100" y="104" width="20" height="8" rx="4" fill="rgba(255,252,248,.88)"/>
+      <path d="M110 104 L110 112" stroke="rgba(200,180,170,.4)" stroke-width="1"/>
+     </g>
+     <!-- hmm / subtle -->
+     <g id="mouth-hmm" style="opacity:0">
+      <path d="M98 108 Q110 112 122 108" stroke="#7a4030" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+     </g>
+
+     <!-- beard / stubble -->
+     <path d="M80 108 Q110 122 140 108 Q138 116 110 120 Q82 116 80 108Z" fill="rgba(80,50,25,.22)"/>
+
+    </g><!-- end head-group -->
+
+   </svg>
+  </div><!-- char-wrap -->
+
+  <!-- BUBBLE -->
+  <div class="bubble" id="bubble">
+   <div class="who"><span class="dot"></span><span id="bname">АЛЕКС · ГИД ПО ПРИЛОЖЕНИЮ</span></div>
+   <div class="txt" id="btxt"></div>
+  </div>
+
+  <!-- CHOICES -->
+  <div class="choices" id="choices"></div>
+
+  <!-- REWARD -->
+  <div class="reward" id="reward">
+   <div class="confetti" id="confetti"></div>
+   <div class="big-em" id="rem">🎁</div>
+   <div class="badge" id="rbadge">★ РАЗДЕЛ ОТКРЫТ</div>
+   <h2 id="rh2">Вот оно!</h2>
+   <p id="rp">Персональные акции ждали тебя прямо здесь.</p>
+   <div class="pts" id="rpts"><span>+500</span><span style="font-size:24px;color:var(--lime)">✕</span></div>
+   <div class="links" id="rlinks"></div>
+   <div class="restart" onclick="restart()">↩ Пройти заново</div>
+  </div>
+
+ </div>
+</div>
+
+<script>
+/* ─── SCENARIO ─────────────────────────────────────────────────────
+   Каждый step: pose, text, choices[]
+   choice.next = N (число) → следующий step
+   choice.next = "r:ключ" → экран награды
+   ──────────────────────────────────────────────────────────────── */
+const S = [
+
+ /* 0 — первое знакомство, хук */
+ {
+  pose: "welcome",
+  text: "Привет! Я Алекс 👋 Большинство покупателей переплачивают в нашем магазине просто потому, что не знают про одну вещь в приложении. Хочешь узнать?",
+  choices: [
+   { ic:"🤔", main:"Да, что за вещь?", sub:"Интересно, покажи", next:1 },
+   { ic:"💸", main:"Я и так покупаю выгодно", sub:"Или думаю, что выгодно...", next:2 },
+  ]
+ },
+
+ /* 1 — хук раскрыт */
+ {
+  pose: "wink",
+  text: "В твоём приложении прямо сейчас спрятаны скидки только для тебя — кешбэк 20%, личные баллы, спецпредложения. Их никто не трогал. Ты вообще знал про раздел «Персональные акции»?",
+  choices: [
+   { ic:"😮", main:"Нет, впервые слышу!", sub:"Покажи, что там есть", next:3 },
+   { ic:"🙂", main:"Да, видел краем глаза", sub:"Но не разбирался", next:3 },
+  ]
+ },
+
+ /* 2 — путь «я экономлю» */
+ {
+  pose: "think",
+  text: "А ты проверял, сколько кешбэка прямо сейчас лежит на твоём счёте? Иногда там сотни рублей, которые просто ждут. Давай посмотрим вместе?",
+  choices: [
+   { ic:"💰", main:"Ладно, покажи мои баллы", sub:"Сколько там накопилось?", next:5 },
+   { ic:"🏷️", main:"Сначала про скидки", sub:"Что за персональные акции?", next:1 },
+  ]
+ },
+
+ /* 3 — объясняем ценность */
+ {
+  pose: "point",
+  text: "Раздел «Персональные акции» — это твой личный кабинет выгоды. Магазин анализирует, что ты покупаешь, и делает скидки именно на твои любимые товары. Сейчас там кешбэк 20% на курицу и 800 баллов за готовую еду. Это только для тебя!",
+  choices: [
+   { ic:"🔥", main:"Хочу это активировать!", sub:"Открыть «Персональные акции»", next:"r:promo" },
+   { ic:"🤨", main:"А как это работает?", sub:"Объясни про баллы", next:4 },
+  ]
+ },
+
+ /* 4 — объясняем механику */
+ {
+  pose: "happy",
+  text: "Всё просто: покупаешь — копишь баллы ✕. 100 баллов = 10 рублей. Плюс каждую неделю магазин кладёт тебе персональные купоны — на то, что ты реально покупаешь. Это буквально деньги, которые ждут тебя в приложении!",
+  choices: [
+   { ic:"🎁", main:"Отлично, хочу свои купоны!", sub:"Открыть «Персональные акции»", next:"r:promo" },
+   { ic:"🛒", main:"А что ещё есть в приложении?", sub:"Расскажи про другие разделы", next:6 },
+  ]
+ },
+
+ /* 5 — раздел баллов */
+ {
+  pose: "wink",
+  text: "Смотри — раздел «Моя выгода» покажет твои баллы, историю кешбэка и сколько ты уже сэкономил. Иногда там сюрпризы 😉 Хочешь глянуть?",
+  choices: [
+   { ic:"💳", main:"Да, открыть «Моя выгода»", sub:"Посмотреть баллы и кешбэк", next:"r:benefit" },
+   { ic:"🏷️", main:"Лучше про скидки", sub:"Что за персональные акции?", next:3 },
+  ]
+ },
+
+ /* 6 — обзор приложения */
+ {
+  pose: "happy",
+  text: "В приложении куча всего: доставка за 30 минут 🚚, готовая еда со скидками до −40%, каталог с 10 000+ товаров и — главное — твои персональные акции. Куда заглянем первым делом?",
+  choices: [
+   { ic:"🏷️", main:"Персональные акции", sub:"Мой кешбэк и купоны", next:"r:promo" },
+   { ic:"🍱", main:"Готовая еда", sub:"Скидки до −40% прямо сейчас", next:"r:food" },
+   { ic:"🚚", main:"Доставка", sub:"Заказ домой за 30–45 минут", next:"r:delivery" },
+  ]
+ },
+
+];
+
+/* ─── REWARDS ──────────────────────────────── */
+const R = {
+ promo: {
+  em:"🎁", badge:"★ ТВОЯ ВЫГОДА",
+  h2:"Вот оно — твои личные скидки!",
+  p:"Кешбэк 20% на курицу, баллы за готовую еду и ещё 3 персональных купона. Это только для тебя — активируй сейчас.",
+  pts:"+500 ✕",
+  links:[
+   {label:"🏷️ Открыть «Персональные акции»", href:"APP_DEEPLINK_PERSONAL_PROMO", primary:true},
+   {label:"🔙 Остаться с Алексом", reset:true},
+  ]
+ },
+ benefit: {
+  em:"💰", badge:"★ БАЛЛЫ ЖДУТ",
+  h2:"Твои баллы уже копятся!",
+  p:"В разделе «Моя выгода» покажем, сколько накопилось и как превратить баллы в скидку прямо на кассе.",
+  pts:"+200 ✕",
+  links:[
+   {label:"💳 Перейти в «Моя выгода»", href:"APP_DEEPLINK_MY_BENEFIT", primary:true},
+   {label:"🔙 Назад к Алексу", reset:true},
+  ]
+ },
+ food: {
+  em:"🍱", badge:"★ ВКУСНО И ВЫГОДНО",
+  h2:"Готовая еда — скидки до −40%!",
+  p:"Суши, горячее, комбо-наборы — заказывай со скидкой и получай баллы за каждую покупку.",
+  pts:"+300 ✕",
+  links:[
+   {label:"🍽️ Открыть «Готовая еда»", href:"APP_DEEPLINK_READY_FOOD", primary:true},
+   {label:"🔙 Назад к Алексу", reset:true},
+  ]
+ },
+ delivery: {
+  em:"🚚", badge:"★ БЫСТРАЯ ДОСТАВКА",
+  h2:"Доставка прямо к тебе!",
+  p:"30–45 минут до твоей двери. Первая доставка бесплатно — активируй через приложение.",
+  pts:"+100 ✕",
+  links:[
+   {label:"📍 Перейти к доставке", href:"APP_DEEPLINK_DELIVERY", primary:true},
+   {label:"🔙 Назад к Алексу", reset:true},
+  ]
+ },
+};
+
+/* ─── ENGINE ───────────────────────────────── */
+const char   = document.getElementById("char");
+const bubble = document.getElementById("bubble");
+const btxt   = document.getElementById("btxt");
+const choices= document.getElementById("choices");
+let typer = null;
+
+function setPose(p){ char.className = "char-wrap pose-"+p; }
+
+function type(text, done){
+ clearInterval(typer);
+ btxt.textContent = "";
+ let i = 0;
+ const cur = document.createElement("span");
+ cur.className = "cursor";
+ typer = setInterval(()=>{
+  btxt.textContent = text.slice(0,++i);
+  btxt.appendChild(cur);
+  if(i>=text.length){ clearInterval(typer); if(done) done(); }
+ }, 18);
+}
+
+function showStep(n){
+ const step = S[n];
+ setPose(step.pose);
+ bubble.classList.remove("show");
+ choices.innerHTML = "";
+ setTimeout(()=>{
+  bubble.classList.add("show");
+  type(step.text, ()=>{
+   step.choices.forEach((c,i)=>{
+    const el = document.createElement("div");
+    el.className = "ch";
+    el.innerHTML = `
+     <span class="ic">${c.ic}</span>
+     <span class="lbl">
+      <span class="main">${c.main}</span>
+      ${c.sub?`<span class="sub">${c.sub}</span>`:""}
+     </span>
+     <span class="arr">›</span>
+    `;
+    el.onclick = ()=> go(c.next);
+    choices.appendChild(el);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add("show")));
+   });
+  });
+ },160);
+}
+
+function go(next){
+ if(typeof next === "number"){ showStep(next); }
+ else if(next.startsWith("r:")){ showReward(next.slice(2)); }
+}
+
+function showReward(key){
+ const r = R[key];
+ document.getElementById("rem").textContent = r.em;
+ document.getElementById("rbadge").textContent = r.badge;
+ document.getElementById("rh2").textContent = r.h2;
+ document.getElementById("rp").textContent = r.p;
+ document.getElementById("rpts").innerHTML = `<span>${r.pts}</span><span style="font-size:24px;color:var(--lime)">✕</span>`;
+ const lk = document.getElementById("rlinks");
+ lk.innerHTML = "";
+ r.links.forEach(l=>{
+  if(l.reset){
+   const a = document.createElement("a");
+   a.href="#"; a.className="btn-sec"; a.textContent=l.label;
+   a.onclick=e=>{e.preventDefault();restart();};
+   lk.appendChild(a);
+  } else {
+   const a = document.createElement("a");
+   a.href=l.href; a.className=l.primary?"btn-primary":"btn-sec";
+   a.textContent=l.label;
+   lk.appendChild(a);
+  }
+ });
+ confetti();
+ setPose("happy");
+ bubble.classList.remove("show");
+ choices.innerHTML="";
+ document.getElementById("reward").classList.add("show");
+}
+
+function restart(){
+ document.getElementById("reward").classList.remove("show");
+ document.getElementById("confetti").innerHTML="";
+ showStep(0);
+}
+
+function confetti(){
+ const c = document.getElementById("confetti");
+ c.innerHTML="";
+ const cols=["#c8f031","#f5c842","#2db561","#ffffff","#f4872a","#80e0a0"];
+ for(let i=0;i<52;i++){
+  const s=document.createElement("i");
+  const col=cols[Math.floor(Math.random()*cols.length)];
+  s.style.cssText=`
+   left:${Math.random()*100}%;
+   background:${col};
+   width:${5+Math.random()*7}px;
+   height:${9+Math.random()*11}px;
+   animation-duration:${1.6+Math.random()*2.2}s;
+   animation-delay:${Math.random()*.5}s;
+   transform:rotate(${Math.random()*360}deg);
+  `;
+  c.appendChild(s);
+ }
+}
+
+showStep(0);
+</script>
+</body>
+</html>
