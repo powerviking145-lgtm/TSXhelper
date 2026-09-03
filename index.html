@@ -52,7 +52,6 @@ body{
     radial-gradient(ellipse 70% 40% at 85% 25%,#0f2008 0%,transparent 60%),
     linear-gradient(180deg,#0f1a0b 0%,#0c1409 50%,#080e06 100%);
 }
-/* ceiling lamps */
 .lamp{position:absolute;top:0;width:3px;height:55px;transform-origin:top center;}
 .lamp::before{
   content:"";position:absolute;bottom:0;left:50%;transform:translateX(-50%);
@@ -68,12 +67,10 @@ body{
 .lamp.l2{left:50%;background:transparent;}
 .lamp.l3{left:82%;background:transparent;}
 
-/* shelf rows */
 .shelf{position:absolute;left:0;right:0;height:8px;background:linear-gradient(180deg,#2a3520,#1a2212);border-radius:2px;}
 .shelf::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.04) 0,rgba(255,255,255,.01) 100%);}
 .s1{top:22%}.s2{top:42%}.s3{top:62%}
 
-/* produce on shelves */
 .prod{position:absolute;display:flex;gap:2px;align-items:flex-end;}
 .pi{border-radius:3px 3px 1px 1px}
 .prod.pa{top:calc(22% - 30px);left:5%}
@@ -81,7 +78,6 @@ body{
 .prod.pc{top:calc(42% - 28px);right:8%}
 .prod.pd{top:calc(42% - 22px);left:12%}
 
-/* vignette */
 .vig{
   position:absolute;inset:0;pointer-events:none;
   background:
@@ -112,11 +108,9 @@ body{
   filter:drop-shadow(0 20px 40px rgba(0,0,0,.6)) drop-shadow(0 4px 12px rgba(0,200,80,.08));
 }
 
-/* breathing */
 #body-group{animation:breathe 3.8s ease-in-out infinite;transform-origin:50% 95%}
 @keyframes breathe{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.022)}}
 
-/* head float */
 #head-group{animation:headfloat 5s ease-in-out infinite;transform-origin:50% 100%}
 @keyframes headfloat{
   0%,100%{transform:translateY(0) rotate(0)}
@@ -124,37 +118,28 @@ body{
   70%{transform:translateY(-1.5px) rotate(-.7deg)}
 }
 
-/* blink */
 #eye-l,#eye-r{animation:blink 4.5s infinite;transform-origin:50% 50%}
 @keyframes blink{0%,88%,100%{transform:scaleY(1)}92%{transform:scaleY(.05)}}
 
-/* arm rest */
 #arm-l{transform:rotate(12deg);transform-origin:55px 135px;transition:transform .55s cubic-bezier(.3,.9,.3,1)}
 #arm-r{transform:rotate(-12deg);transform-origin:165px 135px;transition:transform .55s cubic-bezier(.3,.9,.3,1)}
 
-/* mouth morph */
 #mouth-smile{transition:d .4s;transition:opacity .3s}
 #mouth-open{opacity:0;transition:opacity .3s}
 #mouth-hmm{opacity:0;transition:opacity .3s}
 
-/* eyebrow transition */
 #brow-l,#brow-r{transition:transform .4s cubic-bezier(.3,.9,.3,1)}
 #cheek-l,#cheek-r{opacity:0;transition:opacity .4s}
 
-/* POSE CLASSES */
-
-/* think */
 .pose-think #arm-l{transform:rotate(-100deg) translateX(-8px);transform-origin:55px 135px}
 .pose-think #brow-l{transform:rotate(-15deg) translateY(-2px)}
 .pose-think #brow-r{transform:rotate(10deg) translateY(-2px)}
 .pose-think #mouth-smile{opacity:0}
 .pose-think #mouth-hmm{opacity:1}
 
-/* point */
 .pose-point #arm-r{transform:rotate(-155deg) translateY(-4px);transform-origin:165px 135px}
 .pose-point #brow-l{transform:rotate(-8deg) translateY(-2px)}
 
-/* happy */
 .pose-happy #arm-l{transform:rotate(-55deg);transform-origin:55px 135px}
 .pose-happy #arm-r{transform:rotate(55deg);transform-origin:165px 135px}
 .pose-happy #brow-l{transform:rotate(-12deg) translateY(-3px)}
@@ -163,7 +148,6 @@ body{
 .pose-happy #mouth-open{opacity:1}
 .pose-happy #cheek-l,.pose-happy #cheek-r{opacity:1}
 
-/* wink */
 .pose-wink #arm-r{transform:rotate(-148deg);transform-origin:165px 135px}
 .pose-wink #brow-l{transform:rotate(-18deg) translateY(-4px)}
 .pose-wink #eye-l{transform:scaleY(.05);animation:none}
@@ -171,7 +155,6 @@ body{
 .pose-wink #mouth-smile{opacity:0}
 .pose-wink #mouth-hmm{opacity:1}
 
-/* welcome */
 .pose-welcome #arm-r{transform:rotate(-170deg);transform-origin:165px 135px}
 .pose-welcome #brow-l{transform:translateY(-2px)}
 .pose-welcome #brow-r{transform:translateY(-2px)}
@@ -286,7 +269,6 @@ body{
    <div class="shelf s1"></div>
    <div class="shelf s2"></div>
    <div class="shelf s3"></div>
-   <!-- produce -->
    <div class="prod pa">
     <div class="pi" style="width:14px;height:28px;background:linear-gradient(180deg,#6db85e,#3a7a30)"></div>
     <div class="pi" style="width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#e86060,#b02020)"></div>
@@ -310,7 +292,6 @@ body{
    </div>
   </div>
 
-  <!-- vignette -->
   <div class="vig"></div>
 
   <!-- TOP BAR -->
@@ -328,7 +309,6 @@ body{
   <div class="char-wrap" id="char">
    <svg class="char-svg" viewBox="0 0 220 340" fill="none" xmlns="http://www.w3.org/2000/svg">
     <defs>
-     <!-- skin gradient -->
      <radialGradient id="skinG" cx="42%" cy="35%" r="58%">
       <stop offset="0%" stop-color="#f5c89a"/>
       <stop offset="100%" stop-color="#d9965c"/>
@@ -337,134 +317,79 @@ body{
       <stop offset="0%" stop-color="#f0b87a"/>
       <stop offset="100%" stop-color="#cc8844"/>
      </radialGradient>
-     <!-- shirt gradient -->
      <linearGradient id="shirtG" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#2d5a22"/>
       <stop offset="100%" stop-color="#1a3a12"/>
      </linearGradient>
-     <!-- hair gradient -->
      <radialGradient id="hairG" cx="50%" cy="30%" r="60%">
       <stop offset="0%" stop-color="#5a3e28"/>
       <stop offset="100%" stop-color="#2e1e0e"/>
      </radialGradient>
-     <!-- eye gradient -->
      <radialGradient id="eyeG" cx="35%" cy="35%" r="60%">
       <stop offset="0%" stop-color="#3a5080"/>
       <stop offset="100%" stop-color="#1a2040"/>
      </radialGradient>
-     <!-- shadow under char -->
      <radialGradient id="shadowG" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="rgba(0,0,0,.4)"/>
       <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
      </radialGradient>
-     <!-- shirt shine -->
      <linearGradient id="shirtShine" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="rgba(255,255,255,.1)"/>
       <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
      </linearGradient>
     </defs>
-
-    <!-- ground shadow -->
     <ellipse cx="110" cy="332" rx="68" ry="8" fill="url(#shadowG)"/>
-
-    <!-- BODY GROUP (breathe) -->
     <g id="body-group">
-
-     <!-- ARM LEFT -->
      <g id="arm-l">
       <rect x="35" y="132" width="26" height="108" rx="13" fill="url(#shirtG)"/>
       <rect x="35" y="132" width="26" height="108" rx="13" fill="url(#shirtShine)"/>
-      <!-- hand left -->
       <ellipse cx="48" cy="248" rx="14" ry="13" fill="url(#skinG)"/>
       <ellipse cx="42" cy="244" rx="5" ry="4" fill="url(#skinGd)" opacity=".6"/>
      </g>
-
-     <!-- ARM RIGHT -->
      <g id="arm-r">
       <rect x="159" y="132" width="26" height="108" rx="13" fill="url(#shirtG)"/>
       <rect x="159" y="132" width="26" height="108" rx="13" fill="url(#shirtShine)"/>
-      <!-- hand right -->
       <ellipse cx="172" cy="248" rx="14" ry="13" fill="url(#skinG)"/>
       <ellipse cx="178" cy="244" rx="5" ry="4" fill="url(#skinGd)" opacity=".6"/>
      </g>
-
-     <!-- TORSO -->
      <rect x="62" y="126" width="96" height="180" rx="44" fill="url(#shirtG)"/>
      <rect x="62" y="126" width="96" height="180" rx="44" fill="url(#shirtShine)"/>
-
-     <!-- collar -->
      <path d="M95 132 L110 158 L125 132" fill="#203818" opacity=".8"/>
-     <!-- white undershirt -->
      <path d="M101 126 C101 126 110 148 119 126" fill="#ddeedd" opacity=".9"/>
-
-     <!-- pocket badge (lime) -->
      <rect x="87" y="168" width="28" height="8" rx="3" fill="#a8cd1a" opacity=".7"/>
-     <!-- pocket badge detail -->
      <rect x="90" y="170" width="10" height="4" rx="2" fill="#c8f031" opacity=".5"/>
-
-     <!-- shirt trim at collar -->
      <path d="M80 128 C80 128 95 140 110 140 C125 140 140 128 140 128" stroke="#3a7028" stroke-width="2" fill="none" opacity=".5"/>
-
-    </g><!-- end body-group -->
-
-    <!-- HEAD GROUP (float) -->
+    </g>
     <g id="head-group">
-
-     <!-- neck -->
      <rect x="100" y="108" width="20" height="26" rx="8" fill="url(#skinG)"/>
-
-     <!-- head base -->
      <ellipse cx="110" cy="80" rx="52" ry="54" fill="url(#skinG)"/>
-     <!-- head side shadow -->
      <ellipse cx="110" cy="80" rx="52" ry="54" fill="radial-gradient(ellipse at 75% 60%,rgba(0,0,0,.12),transparent)" opacity=".6"/>
-
-     <!-- HAIR -->
      <ellipse cx="110" cy="48" rx="52" ry="36" fill="url(#hairG)"/>
-     <!-- hair front -->
      <path d="M60 60 Q65 32 110 28 Q155 32 160 60 Q148 52 130 50 Q110 46 90 50 Q72 52 60 60Z" fill="url(#hairG)"/>
-     <!-- hair highlight -->
      <path d="M82 34 Q100 28 118 32" stroke="rgba(120,80,40,.4)" stroke-width="3" fill="none" stroke-linecap="round"/>
-     <!-- sideburns -->
      <rect x="58" y="68" width="10" height="22" rx="5" fill="url(#hairG)"/>
      <rect x="152" y="68" width="10" height="22" rx="5" fill="url(#hairG)"/>
-
-     <!-- EARS -->
      <ellipse cx="60" cy="82" rx="9" ry="11" fill="url(#skinG)"/>
      <ellipse cx="160" cy="82" rx="9" ry="11" fill="url(#skinG)"/>
-     <!-- ear detail -->
      <ellipse cx="60" cy="82" rx="5" ry="7" fill="url(#skinGd)" opacity=".5"/>
      <ellipse cx="160" cy="82" rx="5" ry="7" fill="url(#skinGd)" opacity=".5"/>
-
-     <!-- EYEBROWS -->
      <g id="brow-l" style="transform-origin:82px 60px">
       <path d="M70 61 Q82 55 94 59" stroke="#4a2e18" stroke-width="3.5" fill="none" stroke-linecap="round"/>
      </g>
      <g id="brow-r" style="transform-origin:138px 60px">
       <path d="M126 59 Q138 55 150 61" stroke="#4a2e18" stroke-width="3.5" fill="none" stroke-linecap="round"/>
      </g>
-
-     <!-- GLASSES FRAMES -->
-     <!-- left frame -->
      <rect x="70" y="66" width="36" height="26" rx="8" stroke="#2a1e14" stroke-width="2.5" fill="rgba(180,220,255,.06)"/>
-     <!-- right frame -->
      <rect x="114" y="66" width="36" height="26" rx="8" stroke="#2a1e14" stroke-width="2.5" fill="rgba(180,220,255,.06)"/>
-     <!-- bridge -->
      <path d="M106 79 L114 79" stroke="#2a1e14" stroke-width="2.5" stroke-linecap="round"/>
-     <!-- temples -->
      <path d="M70 79 L62 76" stroke="#2a1e14" stroke-width="2" stroke-linecap="round"/>
      <path d="M150 79 L158 76" stroke="#2a1e14" stroke-width="2" stroke-linecap="round"/>
-     <!-- glasses shine -->
      <path d="M73 69 Q80 66 85 68" stroke="rgba(255,255,255,.25)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
      <path d="M117 69 Q124 66 129 68" stroke="rgba(255,255,255,.25)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-
-     <!-- EYES -->
      <g id="eye-l" style="transform-origin:88px 79px">
       <ellipse cx="88" cy="79" rx="10" ry="9" fill="url(#eyeG)"/>
-      <!-- pupil -->
       <ellipse cx="88" cy="79" rx="5.5" ry="5.5" fill="#12162a"/>
-      <!-- iris ring -->
       <ellipse cx="88" cy="79" rx="8" ry="7.5" stroke="rgba(80,120,200,.3)" stroke-width="1" fill="none"/>
-      <!-- highlight -->
       <ellipse cx="84" cy="75" rx="3" ry="2.5" fill="rgba(255,255,255,.75)"/>
       <ellipse cx="91" cy="81" rx="1.5" ry="1.2" fill="rgba(255,255,255,.3)"/>
      </g>
@@ -475,43 +400,28 @@ body{
       <ellipse cx="128" cy="75" rx="3" ry="2.5" fill="rgba(255,255,255,.75)"/>
       <ellipse cx="135" cy="81" rx="1.5" ry="1.2" fill="rgba(255,255,255,.3)"/>
      </g>
-
-     <!-- NOSE -->
      <path d="M106 90 Q110 100 114 90" stroke="rgba(170,100,50,.5)" stroke-width="2" fill="none" stroke-linecap="round"/>
      <ellipse cx="106" cy="96" rx="4" ry="3" fill="rgba(180,100,50,.2)"/>
      <ellipse cx="114" cy="96" rx="4" ry="3" fill="rgba(180,100,50,.2)"/>
-
-     <!-- CHEEKS -->
      <ellipse id="cheek-l" cx="76" cy="94" rx="12" ry="8" fill="rgba(220,100,80,.25)"/>
      <ellipse id="cheek-r" cx="144" cy="94" rx="12" ry="8" fill="rgba(220,100,80,.25)"/>
-
-     <!-- MOUTHS (swap via opacity) -->
-     <!-- smile (default) -->
      <g id="mouth-smile">
       <path d="M96 105 Q110 116 124 105" stroke="#8a4030" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-      <!-- teeth hint -->
       <path d="M100 107 Q110 113 120 107" fill="rgba(255,250,245,.7)"/>
      </g>
-     <!-- open happy -->
      <g id="mouth-open" style="opacity:0">
       <path d="M94 104 Q110 120 126 104" fill="#7a3020"/>
       <path d="M94 104 Q110 120 126 104" stroke="#5a2015" stroke-width="1" fill="none"/>
-      <!-- teeth -->
       <rect x="100" y="104" width="20" height="8" rx="4" fill="rgba(255,252,248,.88)"/>
       <path d="M110 104 L110 112" stroke="rgba(200,180,170,.4)" stroke-width="1"/>
      </g>
-     <!-- hmm / subtle -->
      <g id="mouth-hmm" style="opacity:0">
       <path d="M98 108 Q110 112 122 108" stroke="#7a4030" stroke-width="2.5" fill="none" stroke-linecap="round"/>
      </g>
-
-     <!-- beard / stubble -->
      <path d="M80 108 Q110 122 140 108 Q138 116 110 120 Q82 116 80 108Z" fill="rgba(80,50,25,.22)"/>
-
-    </g><!-- end head-group -->
-
+    </g>
    </svg>
-  </div><!-- char-wrap -->
+  </div>
 
   <!-- BUBBLE -->
   <div class="bubble" id="bubble">
@@ -528,7 +438,7 @@ body{
    <div class="big-em" id="rem">🎁</div>
    <div class="badge" id="rbadge">★ РАЗДЕЛ ОТКРЫТ</div>
    <h2 id="rh2">Вот оно!</h2>
-   <p id="rp">Персональные акции ждали тебя прямо здесь.</p>
+   <p id="rp">Сейчас ты в нужном месте.</p>
    <div class="pts" id="rpts"><span>+500</span><span style="font-size:24px;color:var(--lime)">✕</span></div>
    <div class="links" id="rlinks"></div>
    <div class="restart" onclick="restart()">↩ Пройти заново</div>
@@ -538,131 +448,156 @@ body{
 </div>
 
 <script>
-/* ─── SCENARIO ─────────────────────────────────────────────────────
-   Каждый step: pose, text, choices[]
-   choice.next = N (число) → следующий step
-   choice.next = "r:ключ" → экран награды
+/* ─── СЦЕНАРИЙ ─────────────────────────────────────────────────────
+   pose: welcome | think | point | wink | happy
+   choice.next: число → шаг, "r:ключ" → экран награды
    ──────────────────────────────────────────────────────────────── */
 const S = [
 
- /* 0 — первое знакомство, хук */
+ /* 0 — хук: зацепить с первой секунды */
  {
   pose: "welcome",
-  text: "Привет! Я Алекс 👋 Большинство покупателей переплачивают в нашем магазине просто потому, что не знают про одну вещь в приложении. Хочешь узнать?",
+  text: "Привет! Я Алекс 👋 Скажу честно: большинство людей оставляют деньги в магазине просто так — не зная, что приложение уже приготовило для них выгоду. Хочешь узнать, что тебя ждёт?",
   choices: [
-   { ic:"🤔", main:"Да, что за вещь?", sub:"Интересно, покажи", next:1 },
-   { ic:"💸", main:"Я и так покупаю выгодно", sub:"Или думаю, что выгодно...", next:2 },
+   { ic:"🔥", main:"Да, покажи мою выгоду!", sub:"Интересно, что там для меня", next:1 },
+   { ic:"💡", main:"Расскажи, что вообще умеет приложение", sub:"Хочу понять, зачем оно мне", next:2 },
   ]
  },
 
- /* 1 — хук раскрыт */
+ /* 1 — раскрываем главный раздел «Выгода» */
  {
   pose: "wink",
-  text: "В твоём приложении прямо сейчас спрятаны скидки только для тебя — кешбэк 20%, личные баллы, спецпредложения. Их никто не трогал. Ты вообще знал про раздел «Персональные акции»?",
+  text: "Раздел «Выгода» — это твой личный финансовый помощник внутри магазина. Он следит за ценами, собирает кешбэк и показывает, сколько ты реально сэкономил. Ты вообще заходил туда раньше?",
   choices: [
-   { ic:"😮", main:"Нет, впервые слышу!", sub:"Покажи, что там есть", next:3 },
-   { ic:"🙂", main:"Да, видел краем глаза", sub:"Но не разбирался", next:3 },
+   { ic:"😮", main:"Нет, и хочу зайти прямо сейчас!", sub:"Открыть «Выгода»", next:"r:profit" },
+   { ic:"🤔", main:"А чем это отличается от обычных скидок?", sub:"Объясни подробнее", next:3 },
   ]
  },
 
- /* 2 — путь «я экономлю» */
+ /* 2 — обзор всех возможностей, вход с другой стороны */
+ {
+  pose: "happy",
+  text: "Приложение — это как личный консьерж: скидки на то, что ты любишь, повышенный кешбэк, игра с призами от брендов и даже специальная карта, которая усиливает всю экономию. Что из этого тебя цепляет больше всего?",
+  choices: [
+   { ic:"💰", main:"Скидки и кешбэк — мне это нужно", sub:"Как заработать максимум?", next:1 },
+   { ic:"🎮", main:"Игра с призами — звучит круто!", sub:"Расскажи про игру", next:6 },
+   { ic:"🍊", main:"Карта с повышенным кешбэком", sub:"Что за карта Апельсин?", next:7 },
+  ]
+ },
+
+ /* 3 — разница между «Выгодой» и обычными скидками */
  {
   pose: "think",
-  text: "А ты проверял, сколько кешбэка прямо сейчас лежит на твоём счёте? Иногда там сотни рублей, которые просто ждут. Давай посмотрим вместе?",
+  text: "Обычные скидки — для всех. А раздел «Выгода» — только для тебя. Там твой кешбэк, история экономии и все активные офферы в одном месте. Это как выписка из банка, только приятная 😄",
   choices: [
-   { ic:"💰", main:"Ладно, покажи мои баллы", sub:"Сколько там накопилось?", next:5 },
-   { ic:"🏷️", main:"Сначала про скидки", sub:"Что за персональные акции?", next:1 },
+   { ic:"💳", main:"Хочу свою «Выгоду»!", sub:"Открыть раздел «Выгода»", next:"r:profit" },
+   { ic:"🏷️", main:"А что такое персональные офферы?", sub:"Скидки именно на мои товары", next:4 },
   ]
  },
 
- /* 3 — объясняем ценность */
+ /* 4 — персональные офферы */
  {
   pose: "point",
-  text: "Раздел «Персональные акции» — это твой личный кабинет выгоды. Магазин анализирует, что ты покупаешь, и делает скидки именно на твои любимые товары. Сейчас там кешбэк 20% на курицу и 800 баллов за готовую еду. Это только для тебя!",
+  text: "Магазин смотрит, что ты обычно покупаешь, и каждую неделю готовит кешбэк именно на эти товары. Любишь курицу — вот 20% назад. Берёшь молоко каждый день — вот оффер на молочку. Это буквально деньги под твои покупки!",
   choices: [
-   { ic:"🔥", main:"Хочу это активировать!", sub:"Открыть «Персональные акции»", next:"r:promo" },
-   { ic:"🤨", main:"А как это работает?", sub:"Объясни про баллы", next:4 },
+   { ic:"🎁", main:"Хочу свои офферы прямо сейчас!", sub:"Открыть «Персональные офферы»", next:"r:personal" },
+   { ic:"📦", main:"А если я покупаю много разных товаров?", sub:"Узнать про «Любимые категории»", next:5 },
   ]
  },
 
- /* 4 — объясняем механику */
- {
-  pose: "happy",
-  text: "Всё просто: покупаешь — копишь баллы ✕. 100 баллов = 10 рублей. Плюс каждую неделю магазин кладёт тебе персональные купоны — на то, что ты реально покупаешь. Это буквально деньги, которые ждут тебя в приложении!",
-  choices: [
-   { ic:"🎁", main:"Отлично, хочу свои купоны!", sub:"Открыть «Персональные акции»", next:"r:promo" },
-   { ic:"🛒", main:"А что ещё есть в приложении?", sub:"Расскажи про другие разделы", next:6 },
-  ]
- },
-
- /* 5 — раздел баллов */
+ /* 5 — любимые категории */
  {
   pose: "wink",
-  text: "Смотри — раздел «Моя выгода» покажет твои баллы, историю кешбэка и сколько ты уже сэкономил. Иногда там сюрпризы 😉 Хочешь глянуть?",
+  text: "Тогда тебе идеально подойдут «Любимые категории» — выбираешь целые группы товаров (мясо, молочка, сладкое, бытовая химия) и получаешь повышенный кешбэк на всё внутри. Широкая экономия без лишних движений!",
   choices: [
-   { ic:"💳", main:"Да, открыть «Моя выгода»", sub:"Посмотреть баллы и кешбэк", next:"r:benefit" },
-   { ic:"🏷️", main:"Лучше про скидки", sub:"Что за персональные акции?", next:3 },
+   { ic:"🛒", main:"Выбрать свои категории!", sub:"Открыть «Любимые категории»", next:"r:categories" },
+   { ic:"🍊", main:"А есть что-то ещё круче?", sub:"Про карту с максимальным кешбэком", next:7 },
   ]
  },
 
- /* 6 — обзор приложения */
+ /* 6 — игра */
  {
   pose: "happy",
-  text: "В приложении куча всего: доставка за 30 минут 🚚, готовая еда со скидками до −40%, каталог с 10 000+ товаров и — главное — твои персональные акции. Куда заглянем первым делом?",
+  text: "Игра — это отдельный мир внутри приложения. Находишь жанры и механики, которые тебе нравятся, проходишь — и получаешь эксклюзивные офферы прямо от производителей товаров. Развлечение плюс реальная выгода!",
   choices: [
-   { ic:"🏷️", main:"Персональные акции", sub:"Мой кешбэк и купоны", next:"r:promo" },
-   { ic:"🍱", main:"Готовая еда", sub:"Скидки до −40% прямо сейчас", next:"r:food" },
-   { ic:"🚚", main:"Доставка", sub:"Заказ домой за 30–45 минут", next:"r:delivery" },
+   { ic:"🎮", main:"Хочу попробовать игру!", sub:"Открыть игру", next:"r:game" },
+   { ic:"💰", main:"Это всё здорово, но хочу про кешбэк", sub:"Вернуться к офферам и выгоде", next:1 },
+  ]
+ },
+
+ /* 7 — карта Апельсин */
+ {
+  pose: "wink",
+  text: "Карта «Апельсин» — это усилитель всей твоей экономии. Она даёт повышенный кешбэк сверху того, что уже есть в приложении. Думай о ней как о турбо-режиме для своих покупок 🍊",
+  choices: [
+   { ic:"🍊", main:"Хочу карту Апельсин!", sub:"Открыть личный кабинет Апельсин", next:"r:apelsin" },
+   { ic:"💰", main:"Сначала хочу разобраться с офферами", sub:"Посмотреть персональные скидки", next:4 },
   ]
  },
 
 ];
 
-/* ─── REWARDS ──────────────────────────────── */
+/* ─── НАГРАДЫ ──────────────────────────────── */
 const R = {
- promo: {
-  em:"🎁", badge:"★ ТВОЯ ВЫГОДА",
-  h2:"Вот оно — твои личные скидки!",
-  p:"Кешбэк 20% на курицу, баллы за готовую еду и ещё 3 персональных купона. Это только для тебя — активируй сейчас.",
-  pts:"+500 ✕",
+
+ profit: {
+  em:"💰", badge:"★ ТВОЯ ВЫГОДА",
+  h2:"Раздел «Выгода» открыт!",
+  p:"Здесь весь твой кешбэк, история экономии и активные офферы. Один экран — вся твоя выгода.",
+  pts:"+150 ✕",
   links:[
-   {label:"🏷️ Открыть «Персональные акции»", href:"APP_DEEPLINK_PERSONAL_PROMO", primary:true},
-   {label:"🔙 Остаться с Алексом", reset:true},
+   { label:"💰 Открыть «Выгода»", href:"tsxapp://app/profitRoot", primary:true },
+   { label:"↩ Назад к Алексу", reset:true },
   ]
  },
- benefit: {
-  em:"💰", badge:"★ БАЛЛЫ ЖДУТ",
-  h2:"Твои баллы уже копятся!",
-  p:"В разделе «Моя выгода» покажем, сколько накопилось и как превратить баллы в скидку прямо на кассе.",
-  pts:"+200 ✕",
-  links:[
-   {label:"💳 Перейти в «Моя выгода»", href:"APP_DEEPLINK_MY_BENEFIT", primary:true},
-   {label:"🔙 Назад к Алексу", reset:true},
-  ]
- },
- food: {
-  em:"🍱", badge:"★ ВКУСНО И ВЫГОДНО",
-  h2:"Готовая еда — скидки до −40%!",
-  p:"Суши, горячее, комбо-наборы — заказывай со скидкой и получай баллы за каждую покупку.",
+
+ personal: {
+  em:"🎁", badge:"★ ТОЛЬКО ДЛЯ ТЕБЯ",
+  h2:"Персональные офферы ждут!",
+  p:"Кешбэк именно на твои любимые товары — магазин уже подготовил подборку. Активируй и экономь.",
   pts:"+300 ✕",
   links:[
-   {label:"🍽️ Открыть «Готовая еда»", href:"APP_DEEPLINK_READY_FOOD", primary:true},
-   {label:"🔙 Назад к Алексу", reset:true},
+   { label:"🏷️ Открыть персональные офферы", href:"tsxapp://app/personal_offers_list", primary:true },
+   { label:"↩ Назад к Алексу", reset:true },
   ]
  },
- delivery: {
-  em:"🚚", badge:"★ БЫСТРАЯ ДОСТАВКА",
-  h2:"Доставка прямо к тебе!",
-  p:"30–45 минут до твоей двери. Первая доставка бесплатно — активируй через приложение.",
+
+ categories: {
+  em:"🛒", badge:"★ ШИРОКАЯ ЭКОНОМИЯ",
+  h2:"Любимые категории — выбирай!",
+  p:"Целые группы товаров с повышенным кешбэком. Выбери категории, которые покупаешь чаще всего, — и экономь на каждой покупке.",
+  pts:"+250 ✕",
+  links:[
+   { label:"📦 Выбрать категории", href:"tsxapp://app/push?url=https%3A%2F%2Fperekrestok-mobile.x5.ru%2Floyalty%2Flevel%2Ffavorite-categories", primary:true },
+   { label:"↩ Назад к Алексу", reset:true },
+  ]
+ },
+
+ apelsin: {
+  em:"🍊", badge:"★ ТУРБО-КЕШБЭК",
+  h2:"Карта Апельсин — твой усилитель!",
+  p:"Повышенный кешбэк сверху всех остальных акций. Подключи один раз и получай больше с каждой покупки.",
+  pts:"+200 ✕",
+  links:[
+   { label:"🍊 Открыть личный кабинет", href:"tsxapp://app/local_webview?url=https%3A%2F%2Fmyapelsin.ru%2Fcard%2Fonboarding%3Futm_source%3Dcrm_x5club%26utm_medium%3Demail%26utm_campaign%3Dmas_geim_holodilnik_korzina_act%26utm_content%3Dx5club%26platformId%3Doffline_partners_xplatformplati500_crm_x5club_email_mas_geim_holodilnik_korzina_act_x5club", primary:true },
+   { label:"↩ Назад к Алексу", reset:true },
+  ]
+ },
+
+ game: {
+  em:"🎮", badge:"★ ИГРАЙ И ВЫИГРЫВАЙ",
+  h2:"Игра запускается!",
+  p:"Находи любимые жанры, проходи уровни и получай эксклюзивные офферы от брендов прямо в процессе игры.",
   pts:"+100 ✕",
   links:[
-   {label:"📍 Перейти к доставке", href:"APP_DEEPLINK_DELIVERY", primary:true},
-   {label:"🔙 Назад к Алексу", reset:true},
+   { label:"🎮 Открыть игру", href:"tsxapp://app/fullscreen_webview?url=https%3A%2F%2Fgp.x5.ru%2Fcosmoperek", primary:true },
+   { label:"↩ Назад к Алексу", reset:true },
   ]
  },
+
 };
 
-/* ─── ENGINE ───────────────────────────────── */
+/* ─── ДВИЖОК (не менять) ───────────────────── */
 const char   = document.getElementById("char");
 const bubble = document.getElementById("bubble");
 const btxt   = document.getElementById("btxt");
@@ -713,7 +648,7 @@ function showStep(n){
 
 function go(next){
  if(typeof next === "number"){ showStep(next); }
- else if(next.startsWith("r:")){ showReward(next.slice(2)); }
+ else if(typeof next === "string" && next.startsWith("r:")){ showReward(next.slice(2)); }
 }
 
 function showReward(key){
